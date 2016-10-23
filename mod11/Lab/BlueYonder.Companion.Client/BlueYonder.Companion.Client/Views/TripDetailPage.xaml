@@ -1,0 +1,290 @@
+﻿<common:LayoutAwarePage
+    x:Name="pageRoot"
+    x:Class="BlueYonder.Companion.Client.Views.TripDetailPage"
+    DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BlueYonder.Companion.Client"
+    xmlns:common="using:BlueYonder.Companion.Client.Common"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:BlueYonder.Companion.Client.Controls"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+
+        <!-- Collection of items displayed by this page -->
+        <CollectionViewSource
+            x:Name="itemsViewSource"
+            Source="{Binding Reservations}" />
+    </Page.Resources>
+
+    <Page.BottomAppBar>
+        <AppBar x:Name="PageAppBar" Background="{StaticResource BlueYonderAppBarBackgroundBrush}">
+            <Grid x:Name="appBarGrid">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50*"/>
+                    <ColumnDefinition Width="50*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel x:Name="RightCommands" Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right">
+                    <Button Command="{Binding CancelCommand}"
+                        IsEnabled="{Binding SelectedItem, ElementName=itemListView, Converter={StaticResource CanCancelFlightConverter}}"
+                        Style="{StaticResource DeleteTripAppBarButtonStyle}"
+                        Loaded="StartLayoutUpdates" Unloaded="StopLayoutUpdates" />
+                    <Button Command="{Binding PurchaseCommand}"
+                        Visibility="{Binding IsPurchaseCommandVisible, Converter={StaticResource BoolToVisibility}}"
+                        Style="{StaticResource PurchaseAppBarButtonStyle}"
+                        Loaded="StartLayoutUpdates" Unloaded="StopLayoutUpdates" />
+                    <Button Command="{Binding PrintBoardingPassCommand}"
+                        Style="{StaticResource PrintBoardingPassAppBarButtonStyle}"
+                        Loaded="StartLayoutUpdates" Unloaded="StopLayoutUpdates" />
+                    <Button Command="{Binding PrintReceiptCommand}"
+                        Style="{StaticResource PrintReceiptAppBarButtonStyle}"
+                        Loaded="StartLayoutUpdates" Unloaded="StopLayoutUpdates" />
+                </StackPanel>
+                <StackPanel x:Name="LeftCommands" Orientation="Horizontal" Grid.Column="0" HorizontalAlignment="Left">
+                    <Button Command="{Binding CheckInCommand}"
+                        Visibility="{Binding SelectedReservation, Converter={StaticResource CanCheckInFlightConverter}}"
+                        HorizontalAlignment="Left"
+                        Style="{StaticResource CheckInAppBarButtonStyle}"
+                        Loaded="StartLayoutUpdates" Unloaded="StopLayoutUpdates" />
+                    <Button Command="{Binding PinCommand}"
+                        Visibility="{Binding IsPinCommandVisible, Converter={StaticResource BoolToVisibility}}"
+                        HorizontalAlignment="Left"
+                        Style="{StaticResource PinAppBarButtonStyle}"
+                        Loaded="StartLayoutUpdates" Unloaded="StopLayoutUpdates" />
+
+                    <Button x:Name="buttonMedia" Command="{Binding MediaCommand}"
+                        Visibility="{Binding IsMediaCommandVisible, Converter={StaticResource BoolToVisibility}}"
+                        IsEnabled="{Binding License.IsMediaEnabled}"
+                        HorizontalAlignment="Left"
+                        Style="{StaticResource MediaAppBarButtonStyle}"
+                        Loaded="StartLayoutUpdates" Unloaded="StopLayoutUpdates" />
+                </StackPanel>
+            </Grid>
+        </AppBar>
+    </Page.BottomAppBar>
+    <!--
+        This grid acts as a root panel for the page that defines two rows:
+        * Row 0 contains the back button and page title
+        * Row 1 contains the rest of the page layout
+    -->
+    <Grid x:Name="tripDetailGrid" Style="{StaticResource LayoutRootStyle}">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="140"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="0"/>
+        </Grid.RowDefinitions>
+
+        <Border x:Name="border" Grid.ColumnSpan="2" Background="{StaticResource TopPageHeaderStripBGBrush}" RenderTransformOrigin="0.5,0.5">
+            <Border.RenderTransform>
+                <CompositeTransform/>
+            </Border.RenderTransform>
+        </Border>
+
+        <Image x:Name="image" Grid.ColumnSpan="2" Grid.RowSpan="2" Stretch="Uniform" Height="250" Source="../Assets/BlueYonderGraphics/BluePlaneandClouds.png" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="10"/>
+
+        <Canvas x:Name="printingRoot" Opacity="0"/>
+
+        <!-- Vertical scrolling list only used when snapped -->
+        <ListView
+            x:Name="itemListView"
+            AutomationProperties.AutomationId="ItemListView"
+            AutomationProperties.Name="Items In Group"
+            TabIndex="1"
+            Grid.Row="1"
+            Grid.Column="0"
+            Visibility="Visible"
+            Margin="100,0,0,0"
+            Padding="10,20,0,60"
+            ItemsSource="{Binding Reservations}"
+            SelectionMode="Single"
+            IsSwipeEnabled="false"
+            IsItemClickEnabled="True"
+            SelectedItem="{Binding SelectedReservation, Mode=TwoWay}"
+            ItemClick="ItemView_ItemClick"
+            ItemContainerStyle="{StaticResource BlueYondertListViewItemContainerStyle}">
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <controls:ReservationDetailsControl Reservation="{Binding}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+        </ListView>
+        <!--SelectedItem="{Binding Base.Info.SelectedFlight, Mode=TwoWay}"-->
+        <!-- Back button and page title -->
+        <Grid Grid.ColumnSpan="2" x:Name="tripDetailHeaderGrid">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
+            <StackPanel  Grid.Column="1"  Orientation="Horizontal">
+                <TextBlock x:Name="pageTitle" Text="{Binding CategoryType, Converter={StaticResource DetailPageTitleConverter}}" Style="{StaticResource PageHeaderTextStyle}" IsHitTestVisible="false"/>
+                <TextBlock Text="{Binding SearchQuery}" Style="{StaticResource PageHeaderTextStyle}" IsHitTestVisible="false"/>
+            </StackPanel>
+
+            <ContentPresenter x:Name="tripDetailLogin" Grid.Column="1" ContentTemplate="{StaticResource LoginTextTemplate}" />
+        </Grid>
+        <StackPanel Grid.Column="1" Grid.Row="1" Margin="20,20,0,0">
+            <TextBlock x:Name="tripDetailHeaderText" Style="{StaticResource HeaderTextStyle}" Text="{Binding SelectedReservationCaption}" Foreground="{StaticResource BlueYonderTextHeadersBrush}" Margin="0,0,0,10" />
+            <TextBlock Style="{StaticResource BlueYonderSubheaderTextStyle}" TextWrapping="Wrap" Text="{Binding SelectedReservationFlightNumber}" />
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal" Visibility="{Binding HasDepartingDate, Converter={StaticResource BoolToVisibility}}">
+                    <TextBlock x:Name="tripDetailDepart"
+                        Style="{StaticResource BlueYonderSubheaderTextStyle}"
+                        Foreground="{StaticResource BlueYonderDarkTextColor}" Margin="0,0,10,10"
+                        Text="Departing: " />
+                    <TextBlock
+                        Style="{StaticResource BlueYonderSubheaderTextStyle}"
+                        Foreground="{StaticResource BlueYonderDarkTextColor}" Margin="0,0,0,10"
+                        Text="{Binding SelectedItem.DepartureFlight.FlightInfo.Departure, ElementName=itemListView, Converter={StaticResource DateTimeStringConverter}}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Visibility="{Binding HasReturningDate, Converter={StaticResource BoolToVisibility}}">
+                    <TextBlock x:Name="tripDetailReturn"
+                        Style="{StaticResource BlueYonderSubheaderTextStyle}"
+                        Foreground="{StaticResource BlueYonderDarkTextColor}" Margin="0,0,10,10"
+                        Text="Returning: " />
+                    <TextBlock
+                        Style="{StaticResource BlueYonderSubheaderTextStyle}"
+                        Foreground="{StaticResource BlueYonderDarkTextColor}"
+                        Text="{Binding SelectedItem.ReturnFlight.FlightInfo.Departure, ElementName=itemListView, Converter={StaticResource DateTimeStringConverter}}" />
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Margin="0,20,0,0" Orientation="Horizontal">
+                <StackPanel>
+                    <HyperlinkButton x:Uid="PurchaseTripButton" Command="{Binding PurchaseCommand}"
+                        Visibility="{Binding IsPurchaseCommandVisible, Converter={StaticResource BoolToVisibility}}"
+                        Style="{StaticResource CustomHyperLinkButtonStyle}"
+                        Content="Purchase this trip" />
+                    <HyperlinkButton x:Uid="CheckInButton"
+                        Visibility="{Binding SelectedItem, Converter={StaticResource CanCheckInFlightConverter}, ElementName=itemListView}"
+                        Style="{StaticResource CustomHyperLinkButtonStyle}"
+                        Content="Check in" />
+
+                    <HyperlinkButton
+                        Visibility="{Binding CanPurchaseTripAddOn, Converter={StaticResource BoolToVisibility}}"
+                        Style="{StaticResource CustomHyperLinkButtonStyle}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock x:Uid="PurchaseFastSecurityScreeningLink" Text="Purchase fast security screening" Margin="0,0,15,0" />
+                            <TextBlock Text="{Binding FastSecurityScreeningPrice}" />
+                        </StackPanel>
+                    </HyperlinkButton>
+                    <HyperlinkButton
+                        Visibility="{Binding CanPurchaseTripAddOn, Converter={StaticResource BoolToVisibility}}"
+                        Style="{StaticResource CustomHyperLinkButtonStyle}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock x:Uid="PurchasePriorityBaggageHandlingLink" Text="Purchase priority baggage handling" Margin="0,0,15,0" />
+                            <TextBlock Text="{Binding PriorityBaggageHandlingPrice}" />
+                        </StackPanel>
+                    </HyperlinkButton>
+                    <HyperlinkButton
+                        Visibility="{Binding CanPurchaseTripAddOn, Converter={StaticResource BoolToVisibility}}"
+                        Style="{StaticResource CustomHyperLinkButtonStyle}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock x:Uid="PurchaseFareClassUpgradeLink" Text="Purchase fare class upgrade" Margin="0,0,15,0" />
+                            <TextBlock Text="{Binding FareClassUpgradePrice}" />
+                        </StackPanel>
+                    </HyperlinkButton>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+        <VisualStateManager.VisualStateGroups>
+
+            <!-- Visual states reflect the application's view state -->
+            <VisualStateGroup x:Name="ApplicationViewStates">
+                <VisualState x:Name="FullScreenLandscape"/>
+                <VisualState x:Name="Filled"/>
+
+                <!-- The entire page respects the narrower 100-pixel margin convention for portrait -->
+                <VisualState x:Name="FullScreenPortrait">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="backButton" Storyboard.TargetProperty="Style">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PortraitBackButtonStyle}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+
+                <!--
+                    The back button and title have different styles when snapped, and the list representation is substituted
+                    for the grid displayed in all other view states
+                -->
+                <VisualState x:Name="Snapped">
+                    <Storyboard>
+                        <!--backButton-->
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="backButton" Storyboard.TargetProperty="Style">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource SnappedBackButtonStyle}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <!--pageTitle-->
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="pageTitle" Storyboard.TargetProperty="Style">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource SnappedPageHeaderTextStyle}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <!--appBarGrid-->
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="appBarGrid" Storyboard.TargetProperty="(Grid.ColumnDefinitions)[0].Width">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="auto"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="appBarGrid" Storyboard.TargetProperty="(Grid.ColumnDefinitions)[1].Width">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="*"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <!--tripDetailGrid-->
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="tripDetailGrid" Storyboard.TargetProperty="(Grid.ColumnDefinitions)[0].Width">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="0"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="tripDetailGrid" Storyboard.TargetProperty="(Grid.ColumnDefinitions)[1].Width">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="*"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="tripDetailGrid" Storyboard.TargetProperty="(Grid.RowDefinitions)[1].Height">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="auto"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="tripDetailGrid" Storyboard.TargetProperty="(Grid.RowDefinitions)[2].Height">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="*"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <!--itemListView-->
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="itemListView" Storyboard.TargetProperty="(Grid.Column)">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="1"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="itemListView" Storyboard.TargetProperty="(Grid.Row)">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="2"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="itemListView" Storyboard.TargetProperty="Margin">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="10,0,0,0"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <!--tripDetailHeaderText-->
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="tripDetailHeaderText" Storyboard.TargetProperty="Style">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource SnappedHeaderTextStyle}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="tripDetailHeaderText" Storyboard.TargetProperty="Margin">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="0,0,0,0"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <!--tripDetailLogin-->
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="tripDetailLogin" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <!--tripDetailDepart-->
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="tripDetailDepart" Storyboard.TargetProperty="Style">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource SnappedBlueYonderSubheaderTextStyle}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <!--tripDetailReturn-->
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="tripDetailReturn" Storyboard.TargetProperty="Style">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource SnappedBlueYonderSubheaderTextStyle}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="image">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Visibility>Collapsed</Visibility>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    </Grid>
+</common:LayoutAwarePage>

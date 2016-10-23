@@ -1,0 +1,33 @@
+﻿<UserControl
+    x:Class="BlueYonder.Companion.Client.Views.Settings.OptionsControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BlueYonder.Companion.Client.Views.Settings"
+    xmlns:controls="using:BlueYonder.Companion.Client.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <Grid Style="{StaticResource CustomSettingsPageStyle}">
+        <StackPanel Margin="20">
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource CustomSettingsBackButtonStyle}" />
+                <TextBlock Style="{StaticResource HeaderTextStyle}"  x:Uid="Options">Options</TextBlock>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <TextBlock Style="{StaticResource CustomTextBlockStyle}" x:Uid="Language" Text="Language:" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" >
+                <ComboBox x:Name="LanguageOverrideComboBox" SelectedValuePath="LanguageTag" DisplayMemberPath="DisplayName"  HorizontalAlignment="Left" VerticalAlignment="Top" Height="34" Width="300" />
+            </StackPanel>
+
+            <StackPanel Margin="0,20,0,0" x:Name="purchaseStack">
+                <HyperlinkButton Style="{StaticResource CustomHyperLinkButtonStyle}" IsEnabled="{Binding IsFull, Converter={StaticResource BooleanNegationConverter}}" Click="PurchaseApp_Click" x:Uid="PurchaseAppButton" Content="Purchase the app" />
+                <HyperlinkButton Style="{StaticResource CustomHyperLinkButtonStyle}" IsEnabled="{Binding IsMediaEnabled, Converter={StaticResource BooleanNegationConverter}}" Click="PurchaseMediaFunctionality_Click" x:Uid="PurchaseMediaFunctionalityButton" Content="Purchase media functionality" />
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

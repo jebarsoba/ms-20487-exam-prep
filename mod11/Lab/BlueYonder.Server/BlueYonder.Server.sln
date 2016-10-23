@@ -1,0 +1,75 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlueYonder.DataAccess", "BlueYonder.DataAccess\BlueYonder.DataAccess.csproj", "{93CC0797-9C83-4229-BFAA-3C6E5190CE36}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlueYonder.DataAccess.Interfaces", "BlueYonder.DataAccess.Interfaces\BlueYonder.DataAccess.Interfaces.csproj", "{7E7EF562-AC6D-4F58-9B79-A93B21CF832C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlueYonder.Entities", "BlueYonder.Entities\BlueYonder.Entities.csproj", "{3A90F72F-08C4-4A4A-ABB1-377E3B34314C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlueYonder.Server.Booking.WebHost", "BlueYonder.Server.Booking.WebHost\BlueYonder.Server.Booking.WebHost.csproj", "{783E12D1-9760-4A86-A6C4-C1C5F8F08BAF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlueYonder.Server.FrequentFlyer.WebHost", "BlueYonder.Server.FrequentFlyer.WebHost\BlueYonder.Server.FrequentFlyer.WebHost.csproj", "{65DA509F-8C07-4096-A646-240130D2447C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlueYonder.BookingService.Contracts", "BlueYonder.BookingService.Contracts\BlueYonder.BookingService.Contracts.csproj", "{075790D2-60A8-4E8E-AC0C-5577BAE2AC28}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlueYonder.BookingService.Implementation", "BlueYonder.BookingService.Implementation\BlueYonder.BookingService.Implementation.csproj", "{FDC67ED0-43CF-4D8B-926F-AD0FB61B0ABA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlueYonder.FrequentFlyerService.Contracts", "BlueYonder.Server.FrequentFlyer.Contracts\BlueYonder.FrequentFlyerService.Contracts.csproj", "{245B57E5-1F48-46E3-B1E5-CB4BACF039FA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlueYonder.FrequentFlyerService.Implementation", "BlueYonder.Server.FrequentFlyer.Implementation\BlueYonder.FrequentFlyerService.Implementation.csproj", "{37080317-BD0D-4E33-9E39-18FD6BFB4196}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{FCC4C9FD-6113-47A4-B301-5AA14DD9D2F5}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
+EndProject
+Global
+
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{93CC0797-9C83-4229-BFAA-3C6E5190CE36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93CC0797-9C83-4229-BFAA-3C6E5190CE36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93CC0797-9C83-4229-BFAA-3C6E5190CE36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93CC0797-9C83-4229-BFAA-3C6E5190CE36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E7EF562-AC6D-4F58-9B79-A93B21CF832C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E7EF562-AC6D-4F58-9B79-A93B21CF832C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E7EF562-AC6D-4F58-9B79-A93B21CF832C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E7EF562-AC6D-4F58-9B79-A93B21CF832C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A90F72F-08C4-4A4A-ABB1-377E3B34314C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A90F72F-08C4-4A4A-ABB1-377E3B34314C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A90F72F-08C4-4A4A-ABB1-377E3B34314C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A90F72F-08C4-4A4A-ABB1-377E3B34314C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{783E12D1-9760-4A86-A6C4-C1C5F8F08BAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{783E12D1-9760-4A86-A6C4-C1C5F8F08BAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{783E12D1-9760-4A86-A6C4-C1C5F8F08BAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{783E12D1-9760-4A86-A6C4-C1C5F8F08BAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65DA509F-8C07-4096-A646-240130D2447C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65DA509F-8C07-4096-A646-240130D2447C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65DA509F-8C07-4096-A646-240130D2447C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65DA509F-8C07-4096-A646-240130D2447C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{075790D2-60A8-4E8E-AC0C-5577BAE2AC28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{075790D2-60A8-4E8E-AC0C-5577BAE2AC28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{075790D2-60A8-4E8E-AC0C-5577BAE2AC28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{075790D2-60A8-4E8E-AC0C-5577BAE2AC28}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDC67ED0-43CF-4D8B-926F-AD0FB61B0ABA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDC67ED0-43CF-4D8B-926F-AD0FB61B0ABA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDC67ED0-43CF-4D8B-926F-AD0FB61B0ABA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDC67ED0-43CF-4D8B-926F-AD0FB61B0ABA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{245B57E5-1F48-46E3-B1E5-CB4BACF039FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{245B57E5-1F48-46E3-B1E5-CB4BACF039FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{245B57E5-1F48-46E3-B1E5-CB4BACF039FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{245B57E5-1F48-46E3-B1E5-CB4BACF039FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37080317-BD0D-4E33-9E39-18FD6BFB4196}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37080317-BD0D-4E33-9E39-18FD6BFB4196}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37080317-BD0D-4E33-9E39-18FD6BFB4196}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37080317-BD0D-4E33-9E39-18FD6BFB4196}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
+

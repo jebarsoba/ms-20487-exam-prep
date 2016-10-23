@@ -1,0 +1,37 @@
+﻿<Application
+    x:Class="BlueYonder.Companion.Client.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BlueYonder.Companion.Client"
+    xmlns:Common="using:BlueYonder.Companion.Client.Common">
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+
+                <!-- 
+                    Styles that define common aspects of the platform look and feel
+                    Required by Visual Studio project and item templates
+                 -->
+                <ResourceDictionary Source="Common/StandardStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <!-- Application-specific resources -->
+
+            <x:String x:Key="AppName">Blue Yonder Companion</x:String>
+
+            <Common:BooleanToVisibilityConverter x:Key="BoolToVisibility"/>
+            <Common:BooleanNegationToVisibilityConverter x:Key="BoolNegationToVisibility"/>
+            <Common:BooleanNegationConverter x:Key="BooleanNegationConverter"/>
+            <Common:SchedulesToFirstDepartureConverter x:Key="SchedulesToFirstDepartureConverter"/>
+            <Common:CanCheckInFlightConverter x:Key="CanCheckInFlightConverter"/>
+            <Common:CanCancelFlightConverter x:Key="CanCancelFlightConverter"/>
+            <Common:DetailPageTitleConverter x:Key="DetailPageTitleConverter"/>
+            <Common:DateTimeStringConverter x:Key="DateTimeStringConverter"/>
+            <Common:MediaTypeTemplateSelector x:Key="MediaTypeTemplateSelector"/>
+            <Common:VideoImagePreviewConverter x:Key="VideoImagePreviewConverter"/>
+            <Common:FolderTypeToVisibilityConveter x:Key="FolderTypeToVisibilityConveter"/>
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

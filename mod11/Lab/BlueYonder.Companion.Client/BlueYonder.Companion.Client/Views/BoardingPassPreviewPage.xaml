@@ -1,0 +1,109 @@
+﻿<Page
+    x:Class="BlueYonder.Companion.Client.Views.BoardingPassPreviewPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Canvas Name="PrintRoot">
+        <Grid Name="ContentContainer">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.7*"/>
+                <RowDefinition Height="0.8*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="3.5*"/>
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="0.5*"/>
+                <RowDefinition Height="0.5*"/>
+                <RowDefinition Height="0.5*"/>
+            </Grid.RowDefinitions>
+            
+            <StackPanel Grid.Row="1"
+                        Orientation="Vertical"
+                        VerticalAlignment="Top">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="../Assets/BlueYonderGraphics/BlueYonderNotificationsLogo.png"/>
+                    <TextBlock TextWrapping="Wrap" FontSize="20" Foreground="Black" Text="Blue Yonder Companion"/>
+                </StackPanel>
+
+                <TextBlock TextWrapping="Wrap" FontSize="22" FontWeight="Bold" Foreground="Black">
+                    <Run Text="Boarding Bass - Reservation Id: "/>
+                    <Run Text="{Binding ReservationId}"/>
+                </TextBlock>
+            </StackPanel>
+
+            <Image HorizontalAlignment="Left" 
+                   Grid.Row="6"
+                   Source="../Assets/BlueYonderGraphics/BlueYonderSmallLogo30X30.png"/>
+
+            <TextBlock Grid.Row="7" FontSize="16" TextWrapping="Wrap" Foreground="Black" Text="© 2012 BlueYonder. All rights reserved."/> 
+            
+            <RichTextBlock Grid.Row="2" Foreground="Black">
+                
+                <Paragraph FontSize="22">
+                    <Run Text="{Binding DepartureFlight.FlightInfo.Flight.Source.Country}"/>
+                    <Run Text=" To "/>
+                    <Run Text="{Binding DepartureFlight.FlightInfo.Flight.Destination.Country}"/>
+                </Paragraph>
+
+                <Paragraph FontSize="16">
+                    <Run Text="{Binding DepartureFlight.FlightInfo.Flight.Source.City}"/>
+                    <Run Text=" To "/>
+                    <Run Text="{Binding DepartureFlight.FlightInfo.Flight.Destination.City}"/>
+                </Paragraph>
+
+                <Paragraph FontSize="16">
+                    <Run Text="Flight Id: "/>
+                    <Run Text="{Binding DepartureFlight.FlightInfo.Flight.FlightId}"/>
+                </Paragraph>
+
+                <Paragraph FontSize="16">
+                    <Run Text="Confirmation Number: "/>
+                    <Run Text="{Binding ConfirmationCode}"/>
+                </Paragraph>
+
+                <Paragraph FontSize="16">
+                    <Run Text="Class: "/>
+                    <Run Text="{Binding DepartureFlight.Class}"/>
+                </Paragraph>
+
+                <Paragraph FontSize="16">
+                    <Run Text="Reservation Date: "/>
+                    <Run Text="{Binding ReservationDate}"/>
+                </Paragraph>
+
+                <Paragraph FontSize="16">
+                    <Run Text="Reservation Id: "/>
+                    <Run Text="{Binding ReservationId}"/>
+                </Paragraph>
+
+                <Paragraph FontSize="16">
+                    <Run Text="Status: "/>
+                    <Run Text="{Binding DepartureFlight.Status}"/>
+                </Paragraph>
+
+                <Paragraph FontSize="32">
+                    <Run Text="Return Flight"/>
+                </Paragraph>
+
+                <Paragraph FontSize="16">
+                    <Run Text="{Binding ReturnFlight.FlightInfo.Flight.Source.City}"/>
+                    <Run Text=" To "/>
+                    <Run Text="{Binding ReturnFlight.FlightInfo.Flight.Destination.City}"/>
+                </Paragraph>
+
+                <Paragraph FontSize="16">
+                    <Run Text="Departure "/>
+                    <Run Text="{Binding ReturnFlight.FlightInfo.Departure}"/>
+                </Paragraph>
+
+                <Paragraph FontSize="16">
+                    <Run Text="Flight Id: "/>
+                    <Run Text="{Binding ReturnFlight.FlightInfo.Flight.FlightId}"/>
+                </Paragraph>
+
+            </RichTextBlock>
+        </Grid>
+    </Canvas>
+</Page>

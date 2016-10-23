@@ -1,0 +1,21 @@
+﻿<Page
+    x:Class="BlueYonder.Companion.Client.Views.Splash"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BlueYonder.Companion.Client.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Canvas Style="{StaticResource LayoutRootStyle}" Background="#548dcd">
+        <StackPanel x:Name="SplashPanel">
+            <Image x:Name="extendedSplashImage" Source="ms-appx:///Assets/BlueYonderGraphics/Splash_620X300.png" Stretch="Fill"/>
+
+            <ProgressRing x:Name="ProgressRing" Foreground="White" 
+                        HorizontalAlignment="Center" IsActive="True" 
+                        MaxHeight="50" MinHeight="50" MaxWidth="50" 
+                        MinWidth="50">
+            </ProgressRing>
+        </StackPanel>
+    </Canvas>
+</Page>

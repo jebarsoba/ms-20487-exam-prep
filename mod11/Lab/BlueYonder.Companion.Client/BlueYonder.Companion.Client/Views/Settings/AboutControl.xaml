@@ -1,0 +1,24 @@
+﻿<UserControl
+    x:Class="BlueYonder.Companion.Client.Views.Settings.AboutControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BlueYonder.Companion.Client.Views.Settings"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <Grid Style="{StaticResource CustomSettingsPageStyle}">
+        <StackPanel Margin="20">
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource CustomSettingsBackButtonStyle}" />
+                <TextBlock Style="{StaticResource HeaderTextStyle}" x:Uid="AboutLabel">About</TextBlock>
+            </StackPanel>
+
+            <TextBlock Style="{StaticResource BodyTextStyle}" x:Uid="AboutDescriptionLabel">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam consectetur nisl quis justo venenatis adipiscing. Aenean non metus odio, vel tristique ante. Fusce accumsan sem nec neque sollicitudin ultrices. In eget lorem quis libero pulvinar ultricies. In ornare, libero sit amet lobortis tempus, mi dolor sagittis diam, quis faucibus nisl mauris sed ipsum. Suspendisse augue augue, rhoncus bibendum feugiat vitae, semper ut risus. Phasellus eleifend scelerisque nibh a ornare. Morbi diam eros, feugiat ut bibendum a, porttitor sit amet dolor. Vivamus et venenatis magna. Nunc sed dui vitae purus vulputate molestie. Nulla id est sapien, ut luctus neque. Nunc in elementum nulla. Suspendisse rutrum, tortor eget iaculis semper, nisl nunc ornare sem, sed congue turpis sapien sed ligula. Praesent sit amet justo eget arcu euismod feugiat. Donec fringilla interdum elit in volutpat. Aenean suscipit, nibh ut scelerisque molestie, eros urna tristique odio, bibendum vulputate quam sapien in elit.
+            </TextBlock>
+        </StackPanel>
+    </Grid>
+</UserControl>

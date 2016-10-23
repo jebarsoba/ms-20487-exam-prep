@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <configSections>
+    <!-- For more information on Entity Framework configuration, visit http://go.microsoft.com/fwlink/?LinkID=237468 -->
+    <section name="entityFramework" type="System.Data.Entity.Internal.ConfigFile.EntityFrameworkSection, EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+  </configSections>
+  <system.web>
+    <compilation debug="true" targetFramework="4.5" />
+    <httpRuntime targetFramework="4.5" />
+  </system.web>
+  <connectionStrings>
+    <add name="BlueYonderServer" connectionString="Data Source=.\SQLEXPRESS;Database=BlueYonder.Server.Lab11;User Id=BlueYonder;Password=Pa$$w0rd;" providerName="System.Data.SqlClient" />
+  </connectionStrings>
+  <startup>
+    <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.5" />
+  </startup>
+  <system.serviceModel>
+    <services>
+      <service name="BlueYonder.BookingService.Implementation.BookingService">
+        <endpoint name="BookingRelayTcp" address="sb://{ServiceBusNamespace}.servicebus.windows.net/booking" binding="netTcpRelayBinding" contract="BlueYonder.BookingService.Contracts.IBookingService" behaviorConfiguration="sbTokenProvider" />
+      </service>
+    </services>
+    <behaviors>
+      <serviceBehaviors>
+        <behavior>
+          <serviceDebug includeExceptionDetailInFaults="true" />
+          <serviceMetadata httpGetEnabled="true" />
+        </behavior>
+      </serviceBehaviors>
+      <endpointBehaviors>
+        <behavior name="sbTokenProvider">
+          <transportClientEndpointBehavior>
+            <tokenProvider>
+              <sharedSecret issuerName="owner" issuerSecret="{IssuerSecret}" />
+            </tokenProvider>
+          </transportClientEndpointBehavior>
+        </behavior>
+      </endpointBehaviors>
+    </behaviors>
+    <extensions>
+      <!-- In this extension section we are introducing all known service bus extensions. User can remove the ones they don't need. -->
+      <behaviorExtensions>
+        <add name="connectionStatusBehavior" type="Microsoft.ServiceBus.Configuration.ConnectionStatusElement, Microsoft.ServiceBus, Version=1.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+        <add name="transportClientEndpointBehavior" type="Microsoft.ServiceBus.Configuration.TransportClientEndpointBehaviorElement, Microsoft.ServiceBus, Version=1.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+        <add name="serviceRegistrySettings" type="Microsoft.ServiceBus.Configuration.ServiceRegistrySettingsElement, Microsoft.ServiceBus, Version=1.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+      </behaviorExtensions>
+      <bindingElementExtensions>
+        <add name="netMessagingTransport" type="Microsoft.ServiceBus.Messaging.Configuration.NetMessagingTransportExtensionElement, Microsoft.ServiceBus, Version=1.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+        <add name="tcpRelayTransport" type="Microsoft.ServiceBus.Configuration.TcpRelayTransportElement, Microsoft.ServiceBus, Version=1.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+        <add name="httpRelayTransport" type="Microsoft.ServiceBus.Configuration.HttpRelayTransportElement, Microsoft.ServiceBus, Version=1.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+        <add name="httpsRelayTransport" type="Microsoft.ServiceBus.Configuration.HttpsRelayTransportElement, Microsoft.ServiceBus, Version=1.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+        <add name="onewayRelayTransport" type="Microsoft.ServiceBus.Configuration.RelayedOnewayTransportElement, Microsoft.ServiceBus, Version=1.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+      </bindingElementExtensions>
+      <bindingExtensions>
+        <add name="basicHttpRelayBinding" type="Microsoft.ServiceBus.Configuration.BasicHttpRelayBindingCollectionElement, Microsoft.ServiceBus, Version=1.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+        <add name="webHttpRelayBinding" type="Microsoft.ServiceBus.Configuration.WebHttpRelayBindingCollectionElement, Microsoft.ServiceBus, Version=1.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+        <add name="ws2007HttpRelayBinding" type="Microsoft.ServiceBus.Configuration.WS2007HttpRelayBindingCollectionElement, Microsoft.ServiceBus, Version=1.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+        <add name="netTcpRelayBinding" type="Microsoft.ServiceBus.Configuration.NetTcpRelayBindingCollectionElement, Microsoft.ServiceBus, Version=1.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+        <add name="netOnewayRelayBinding" type="Microsoft.ServiceBus.Configuration.NetOnewayRelayBindingCollectionElement, Microsoft.ServiceBus, Version=1.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+        <add name="netEventRelayBinding" type="Microsoft.ServiceBus.Configuration.NetEventRelayBindingCollectionElement, Microsoft.ServiceBus, Version=1.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+        <add name="netMessagingBinding" type="Microsoft.ServiceBus.Messaging.Configuration.NetMessagingBindingCollectionElement, Microsoft.ServiceBus, Version=1.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+      </bindingExtensions>
+    </extensions>
+    <bindings>
+      <netTcpBinding>
+        <binding name="TcpTransactionalBind" transactionFlow="true"></binding>
+      </netTcpBinding>
+    </bindings>
+    <client>
+      <endpoint address="net.tcp://localhost/BlueYonder.Server.FrequentFlyer.WebHost/FrequentFlyer.svc" binding="netTcpBinding" bindingConfiguration="TcpTransactionalBind" contract="BlueYonder.FrequentFlyerService.Contracts.IFrequentFlyerService" name="FrequentFlyerEP"></endpoint>
+    </client>
+    <serviceHostingEnvironment>
+      <serviceActivations>
+        <add relativeAddress="booking.svc" service="BlueYonder.BookingService.Implementation.BookingService" />
+      </serviceActivations>
+    </serviceHostingEnvironment>
+  </system.serviceModel>
+  <entityFramework>
+    <defaultConnectionFactory type="System.Data.Entity.Infrastructure.SqlConnectionFactory, EntityFramework" />
+  </entityFramework>
+  <system.webServer>
+    <!-- add this to make the service load-->
+    <applicationInitialization>
+      <add initializationPage="/booking.svc" />
+    </applicationInitialization>
+  </system.webServer>
+</configuration>
