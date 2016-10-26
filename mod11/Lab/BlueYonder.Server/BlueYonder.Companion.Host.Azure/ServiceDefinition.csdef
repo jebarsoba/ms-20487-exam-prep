@@ -19,6 +19,8 @@
     <Certificates>
       <Certificate name="BlueYonderCompanionSSL" storeLocation="LocalMachine" storeName="My" />
     </Certificates>
-    <ConfigurationSettings></ConfigurationSettings>
+    <ConfigurationSettings>
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" />
+    </ConfigurationSettings>
   </WebRole>
 </ServiceDefinition>
