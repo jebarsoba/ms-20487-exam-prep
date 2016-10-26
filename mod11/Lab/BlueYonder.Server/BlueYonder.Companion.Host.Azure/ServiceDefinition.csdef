@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ServiceDefinition name="BlueYonder.Companion.Host.Azure" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition" schemaVersion="2012-10.1.8">
+<ServiceDefinition name="BlueYonder.Companion.Host.Azure" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition" schemaVersion="2015-04.2.6">
   <WebRole name="BlueYonder.Companion.Host" vmsize="Small">
     <Sites>
       <Site name="Web">
@@ -19,7 +19,6 @@
     <Certificates>
       <Certificate name="BlueYonderCompanionSSL" storeLocation="LocalMachine" storeName="My" />
     </Certificates>
-    <ConfigurationSettings>
-    </ConfigurationSettings>
+    <ConfigurationSettings></ConfigurationSettings>
   </WebRole>
 </ServiceDefinition>
