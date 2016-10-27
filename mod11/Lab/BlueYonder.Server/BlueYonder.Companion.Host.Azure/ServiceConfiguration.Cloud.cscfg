@@ -4,6 +4,9 @@
     <Instances count="1" />
     <ConfigurationSettings>
       <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
+      <Setting name="ACS.IssuerName" value="https://BlueYonderCompanionJEB.accesscontrol.windows.net/" />
+      <Setting name="ACS.Realm" value="urn:blueyonder.cloud" />
+      <Setting name="ACS.SigningKey" value="4YmtC6ehzi38PJ3+aIHiOGxNnFXFXdK3sHoQSEjREuc=" />
     </ConfigurationSettings>
     <Certificates>
       <Certificate name="BlueYonderCompanionSSL" thumbprint="449E8941D9D01E96F8F064DFFC5C621006E9B7D9" thumbprintAlgorithm="sha1" />

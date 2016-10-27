@@ -21,6 +21,9 @@
     </Certificates>
     <ConfigurationSettings>
       <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" />
+      <Setting name="ACS.IssuerName" />
+      <Setting name="ACS.Realm" />
+      <Setting name="ACS.SigningKey" />
     </ConfigurationSettings>
   </WebRole>
 </ServiceDefinition>
