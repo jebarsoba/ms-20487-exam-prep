@@ -11,6 +11,7 @@ using BlueYonder.Companion.Entities;
 
 namespace BlueYonder.Companion.Controllers
 {
+    [Authorize]
     public class TravelersController : ApiController
     {
         private ITravelerRepository Travelers { get; set; }

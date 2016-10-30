@@ -16,6 +16,7 @@ using BlueYonder.BookingService.Contracts;
 
 namespace BlueYonder.Companion.Controllers
 {
+    [Authorize]
     public class ReservationsController : ApiController
     {
         // will be used to create channels when required

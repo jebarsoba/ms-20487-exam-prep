@@ -18,6 +18,7 @@ using BlueYonder.BookingService.Contracts;
 
 namespace BlueYonder.Companion.Controllers
 {
+    [Authorize]
     public class TripsController : ApiController
     {
         private ChannelFactory<IBookingService> factory =

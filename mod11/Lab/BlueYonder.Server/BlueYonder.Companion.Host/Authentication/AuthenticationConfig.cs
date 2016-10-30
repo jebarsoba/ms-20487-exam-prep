@@ -13,6 +13,11 @@ namespace BlueYonder.Companion.Host.Authentication
             string realm = CloudConfigurationManager.GetSetting("ACS.Realm").Trim();
             string signingKey = CloudConfigurationManager.GetSetting("ACS.SigningKey").Trim();
 
+            config.AddSimpleWebToken(issuerName, realm, signingKey, AuthenticationOptions.ForAuthorizationHeader("OAuth"));
+
+            config.DefaultAuthenticationScheme = "OAuth";
+            config.EnableSessionToken = true;
+
             return config;
         }
     }

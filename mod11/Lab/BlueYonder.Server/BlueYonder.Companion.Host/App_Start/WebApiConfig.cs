@@ -1,5 +1,6 @@
 ﻿using BlueYonder.Companion.Controllers;
 using BlueYonder.Companion.Controllers.Formatters;
+using BlueYonder.Companion.Host.Authentication;
 using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Routing;
+using Thinktecture.IdentityModel.Tokens.Http;
 
 namespace BlueYonder.Companion.Host
 {
@@ -20,6 +22,13 @@ namespace BlueYonder.Companion.Host
 
             config.IncludeErrorDetailPolicy = IncludeErrorDetailPolicy.Always;
 
+            AuthenticationConfiguration authConfig = AuthenticationConfig.CreateConfiguration();
+
+            config.Routes.MapHttpRoute(
+                name: "callback",
+                routeTemplate: "FederationCallback",
+                defaults: new { controller = "FederationCallback" });
+
             config.Routes.MapHttpRoute(
                 name: "LocationWeatherApi",
                 routeTemplate: "locations/{locationId}/weather",
@@ -31,8 +40,7 @@ namespace BlueYonder.Companion.Host
                 constraints: new
                 {
                     httpMethod = new HttpMethodConstraint(HttpMethod.Get)
-                }
-            );
+                });
 
             config.Routes.MapHttpRoute(
                 name: "TravelerReservationsApi",
@@ -41,26 +49,30 @@ namespace BlueYonder.Companion.Host
                 {
                     controller = "reservations",
                     id = RouteParameter.Optional
-                });    
+                },
+                constraints: null,
+                handler: new AuthenticationHandler(authConfig, config));
 
             config.Routes.MapHttpRoute(
-                   name: "ReservationsApi",
-                   routeTemplate: "Reservations/{id}",
-                   defaults: new
-                   {
-                       controller = "Reservations",
-                       action = "GetReservation"
-                   },
-                   constraints: new
-                   {
-                       httpMethod = new HttpMethodConstraint(HttpMethod.Get)
-                   }
-               );
+                name: "ReservationsApi",
+                routeTemplate: "Reservations/{id}",
+                defaults: new
+                {
+                    controller = "Reservations",
+                    action = "GetReservation"
+                },
+                constraints: new
+                {
+                    httpMethod = new HttpMethodConstraint(HttpMethod.Get)
+                },
+                handler: new AuthenticationHandler(authConfig, config));
 
             config.Routes.MapHttpRoute(
-                    name: "DefaultApi",
-                    routeTemplate: "{controller}/{id}",
-                    defaults: new { id = RouteParameter.Optional });
+                name: "DefaultApi",
+                routeTemplate: "{controller}/{id}",
+                defaults: new { id = RouteParameter.Optional },
+                constraints: null,
+                handler: new AuthenticationHandler(authConfig, config));
 
             config.Formatters.JsonFormatter.SerializerSettings.Converters.Add(
                 new StringEnumConverter());
