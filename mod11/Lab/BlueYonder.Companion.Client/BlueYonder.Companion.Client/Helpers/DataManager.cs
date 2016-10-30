@@ -20,7 +20,7 @@ namespace BlueYonder.Companion.Client.Helpers
     public class DataManager
     {
         private const string Realm = "urn:blueyonder.cloud";
-        private const string AcsNamespace = "{ACSNamespace}";
+        private const string AcsNamespace = "blueyondercompanionjeb";
 
         public static string Token { get; set; }
 

@@ -54,6 +54,9 @@
   <ItemGroup>
     <Folder Include="Profiles" />
   </ItemGroup>
+  <ItemGroup>
+    <PublishProfile Include="Profiles\BlueYonderCompanion-2016-10-23-JorgeEBProduction.azurePubxml" />
+  </ItemGroup>
   <!-- Import the target files for this project template -->
   <PropertyGroup>
     <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>

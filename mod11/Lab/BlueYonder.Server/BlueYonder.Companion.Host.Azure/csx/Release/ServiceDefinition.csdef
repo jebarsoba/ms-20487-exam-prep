@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="BlueYonder.Companion.Host.Azure" schemaVersion="2015-04.2.6" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition">
+  <WebRole name="BlueYonder.Companion.Host">
+    <LocalResources>
+      <LocalStorage name="DiagnosticStore" sizeInMB="4096" cleanOnRoleRecycle="false" />
+    </LocalResources>
+    <ConfigurationSettings>
+      <Setting name="ACS.IssuerName" />
+      <Setting name="ACS.Realm" />
+      <Setting name="ACS.SigningKey" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" />
+    </ConfigurationSettings>
+    <Endpoints>
+      <InputEndpoint name="Endpoint1" protocol="http" port="80" localPort="80" />
+      <InputEndpoint name="Endpoint2" protocol="https" port="443" certificate="BlueYonderCompanionSSL" localPort="443" />
+    </Endpoints>
+    <Certificates>
+      <Certificate name="BlueYonderCompanionSSL" storeLocation="LocalMachine" storeName="My" />
+    </Certificates>
+  </WebRole>
+</ServiceDefinition>

@@ -3,7 +3,7 @@
   <Role name="BlueYonder.Companion.Host">
     <Instances count="1" />
     <ConfigurationSettings>
-      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="DefaultEndpointsProtocol=https;AccountName=bycl20161023jorgeeb;AccountKey=vaZknvjRxc8EMfifC+Pordusw9hizj+lcJyI3czBPVROZAXARZAn5UDsQXRJZYyMj5s+Zx631Zqfe1aPr56dkg==" />
       <Setting name="ACS.IssuerName" value="https://BlueYonderCompanionJEB.accesscontrol.windows.net/" />
       <Setting name="ACS.Realm" value="urn:blueyonder.cloud" />
       <Setting name="ACS.SigningKey" value="4YmtC6ehzi38PJ3+aIHiOGxNnFXFXdK3sHoQSEjREuc=" />

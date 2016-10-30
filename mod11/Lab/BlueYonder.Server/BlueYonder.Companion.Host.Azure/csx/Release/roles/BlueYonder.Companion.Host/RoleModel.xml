@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RoleModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="BlueYonder.Companion.Host" version="2.6.6496.2" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition">
+  <Startup>
+    <Task commandLine="DiagnosticsPluginLauncher.exe" taskType="background" relativePath="plugins\Diagnostics">
+      <Environment>
+        <Variable name="IsEmulated" value="true" />
+        <Variable name="RdModuleName" value="Diagnostics" />
+        <Variable name="WaRoleType" value="IISWebRole" />
+      </Environment>
+    </Task>
+  </Startup>
+  <Runtime>
+    <EntryPoint>
+      <NetFxEntryPoint assemblyName="BlueYonder.Companion.Host.dll" targetFrameworkVersion="v4.0" />
+    </EntryPoint>
+  </Runtime>
+  <Properties>
+    <Property name="TargetFrameworkVersion" value="v4.5" />
+    <Property name="RoleType" value="Web" />
+    <Property name="RoleName" value="BlueYonder.Companion.Host" />
+    <Property name="ProjectName" value="BlueYonder.Companion.Host" />
+    <Property name="Configuration" value="Release" />
+    <Property name="Platform" value="AnyCPU" />
+    <Property name="SetConfiguration" value="Configuration=Release" />
+    <Property name="SetPlatform" value="Platform=AnyCPU" />
+    <Property name="RoleTargetFramework" value="v4.5" />
+    <Property name="OutputDir" value="C:\dev\ms-20487-exam-prep\mod11\Lab\BlueYonder.Server\BlueYonder.Companion.Host.Azure\obj\Release\BlueYonder.Companion.Host\" />
+    <Property name="EntryPoint" value="BlueYonder.Companion.Host.dll" />
+    <Property name="SourceDir" value="C:\dev\ms-20487-exam-prep\mod11\Lab\BlueYonder.Server\BlueYonder.Companion.Host\" />
+    <Property name="SitePhysicalPath" value="C:\dev\ms-20487-exam-prep\mod11\Lab\BlueYonder.Server\BlueYonder.Companion.Host.Azure\obj\Release\BlueYonder.Companion.Host\" />
+    <Property name="TargetRuntimeVersion" value="v4.0" />
+  </Properties>
+  <Sites>
+    <Site name="Web" physicalDirectory="C:\dev\ms-20487-exam-prep\mod11\Lab\BlueYonder.Server\BlueYonder.Companion.Host.Azure\obj\Release\BlueYonder.Companion.Host\">
+      <Bindings>
+        <Binding name="Endpoint1" endpointName="Endpoint1" />
+        <Binding name="Endpoint2" endpointName="Endpoint2" />
+      </Bindings>
+    </Site>
+  </Sites>
+</RoleModel>

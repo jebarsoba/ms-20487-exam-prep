@@ -10,7 +10,7 @@ namespace BlueYonder.Companion.Shared
     {
         public static string BaseUri
         {
-            get { return "https://{CloudService}.cloudapp.net/"; }
+            get { return "https://blueyondercompanion-2016-10-23-jorgeeb.cloudapp.net/"; }
         }
 
         public static string GetLocationsUri
@@ -67,7 +67,7 @@ namespace BlueYonder.Companion.Shared
         {
             get { return BaseUri + "Travelers/{0}"; }
         }
-   
+
         public static string GetWeatherUri
         {
             get { return BaseUri + "locations/{0}/weather?date={1:yyyy-MM-dd}"; }
