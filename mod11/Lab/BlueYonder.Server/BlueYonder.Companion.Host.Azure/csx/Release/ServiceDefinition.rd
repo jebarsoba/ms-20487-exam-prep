@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<serviceModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="BlueYonder.Companion.Host.Azure" generation="1" functional="0" release="0" Id="0eb6bde7-9a89-4a09-861c-5c8117a55dd8" dslVersion="1.2.0.0" xmlns="http://schemas.microsoft.com/dsltools/RDSM">
+<serviceModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="BlueYonder.Companion.Host.Azure" generation="1" functional="0" release="0" Id="15c11c88-e248-49c0-8f0f-358389ce8907" dslVersion="1.2.0.0" xmlns="http://schemas.microsoft.com/dsltools/RDSM">
   <groups>
     <group name="BlueYonder.Companion.Host.AzureGroup" generation="1" functional="0" release="0">
       <componentports>
@@ -138,14 +138,14 @@
     </group>
   </groups>
   <implements>
-    <implementation Id="4502a544-bb19-4a9b-b58d-03062d9128ab" ref="Microsoft.RedDog.Contract\ServiceContract\BlueYonder.Companion.Host.AzureContract@ServiceDefinition">
+    <implementation Id="a0b2ea60-3a43-458b-ad2c-f803c1b7bac2" ref="Microsoft.RedDog.Contract\ServiceContract\BlueYonder.Companion.Host.AzureContract@ServiceDefinition">
       <interfacereferences>
-        <interfaceReference Id="517d4497-7334-46a6-9f2d-a35ac98f96d4" ref="Microsoft.RedDog.Contract\Interface\BlueYonder.Companion.Host:Endpoint1@ServiceDefinition">
+        <interfaceReference Id="815f6904-94ff-4f88-a536-a9a0a07e7bfd" ref="Microsoft.RedDog.Contract\Interface\BlueYonder.Companion.Host:Endpoint1@ServiceDefinition">
           <inPort>
             <inPortMoniker name="/BlueYonder.Companion.Host.Azure/BlueYonder.Companion.Host.AzureGroup/BlueYonder.Companion.Host:Endpoint1" />
           </inPort>
         </interfaceReference>
-        <interfaceReference Id="c389aed4-c415-47c3-bd02-10dd34c8b50b" ref="Microsoft.RedDog.Contract\Interface\BlueYonder.Companion.Host:Endpoint2@ServiceDefinition">
+        <interfaceReference Id="d967682d-3ca2-469c-8138-579345c90c76" ref="Microsoft.RedDog.Contract\Interface\BlueYonder.Companion.Host:Endpoint2@ServiceDefinition">
           <inPort>
             <inPortMoniker name="/BlueYonder.Companion.Host.Azure/BlueYonder.Companion.Host.AzureGroup/BlueYonder.Companion.Host:Endpoint2" />
           </inPort>
