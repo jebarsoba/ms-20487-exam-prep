@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RoleModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="WebRole1_cs" version="2.6.6496.2" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition">
+  <Runtime>
+    <EntryPoint>
+      <NetFxEntryPoint assemblyName="WebRole1.dll" targetFrameworkVersion="v4.0" />
+    </EntryPoint>
+  </Runtime>
+  <Properties>
+    <Property name="TargetFrameworkVersion" value="v4.5" />
+    <Property name="RoleType" value="Web" />
+    <Property name="RoleName" value="WebRole1_cs" />
+    <Property name="ProjectName" value="WebRole1_cs" />
+    <Property name="Configuration" value="Release" />
+    <Property name="Platform" value="AnyCPU" />
+    <Property name="SetConfiguration" value="Configuration=Release" />
+    <Property name="SetPlatform" value="Platform=AnyCPU" />
+    <Property name="RoleTargetFramework" value="v4.5" />
+    <Property name="OutputDir" value="C:\dev\ms-20487-exam-prep\mod6\WebAPIAzureHostingDemo\AzureCloudService1\obj\Release\WebRole1_cs\" />
+    <Property name="EntryPoint" value="WebRole1.dll" />
+    <Property name="SourceDir" value="C:\dev\ms-20487-exam-prep\mod6\WebAPIAzureHostingDemo\WebRole1\" />
+    <Property name="SitePhysicalPath" value="C:\dev\ms-20487-exam-prep\mod6\WebAPIAzureHostingDemo\AzureCloudService1\obj\Release\WebRole1_cs\" />
+    <Property name="TargetRuntimeVersion" value="v4.0" />
+  </Properties>
+  <Sites>
+    <Site name="Web" physicalDirectory="C:\dev\ms-20487-exam-prep\mod6\WebAPIAzureHostingDemo\AzureCloudService1\obj\Release\WebRole1_cs\">
+      <Bindings>
+        <Binding name="Endpoint1" endpointName="Endpoint1" />
+      </Bindings>
+    </Site>
+  </Sites>
+</RoleModel>

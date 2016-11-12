@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPIAzureHostingDemo_waws", "WebAPIAzureHostingDemo\WebAPIAzureHostingDemo_waws.csproj", "{DFDFE941-4465-4563-9C14-305D65E9842D}"
+EndProject
+Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "AzureCloudService1", "AzureCloudService1\AzureCloudService1.ccproj", "{3836FF39-A60E-4D29-AF7C-F2B8D43D8CB9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebRole1_cs", "WebRole1\WebRole1_cs.csproj", "{CF5D1440-4412-418B-8DF4-EA1AA5FDD1EE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DFDFE941-4465-4563-9C14-305D65E9842D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFDFE941-4465-4563-9C14-305D65E9842D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFDFE941-4465-4563-9C14-305D65E9842D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFDFE941-4465-4563-9C14-305D65E9842D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3836FF39-A60E-4D29-AF7C-F2B8D43D8CB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3836FF39-A60E-4D29-AF7C-F2B8D43D8CB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3836FF39-A60E-4D29-AF7C-F2B8D43D8CB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3836FF39-A60E-4D29-AF7C-F2B8D43D8CB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF5D1440-4412-418B-8DF4-EA1AA5FDD1EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF5D1440-4412-418B-8DF4-EA1AA5FDD1EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF5D1440-4412-418B-8DF4-EA1AA5FDD1EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF5D1440-4412-418B-8DF4-EA1AA5FDD1EE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
