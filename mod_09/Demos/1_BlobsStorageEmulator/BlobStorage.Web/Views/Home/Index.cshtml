@@ -1,0 +1,45 @@
+﻿<header>
+    <div class="content-wrapper">
+        <div class="float-left">
+            <p class="site-title">
+                <a href="~/">ASP.NET Web API</a>
+            </p>
+        </div>
+    </div>
+</header>
+<div id="body">   
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>Upload files to blob storage</h1>
+            </hgroup>
+
+        </div>
+    </section>
+    <section class="content-wrapper main-content clear-fix">
+        <form action="~/Home/UploadFile" enctype="multipart/form-data" method="POST">
+            <input name="file" size="40" type="file">
+            <br>
+            <input type="submit" value="upload">
+        </form>
+
+        <h3>The files we have so far:</h3>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Size</th>
+                <th>Direct Download</th>
+                <th>Download</th>
+            </tr>
+            @foreach (BlobStorage.Web.BlobStorageFile item in Model) 
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Size KB</td>
+                    <td><a href="@item.Uri" target="_blank">Direct Download</a></td>
+                    <td><a href="~/api/blobs?blobName=@item.Name" target="_blank">Download</a></td>
+                </tr>	
+            }
+        </table>
+    </section>
+</div>
