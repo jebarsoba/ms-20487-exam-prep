@@ -1,0 +1,28 @@
+﻿@model TableStorage.Country
+
+@if ((bool)ViewData["isFirst"])
+{
+    <tr>
+    @foreach (var prop in ViewData.ModelMetadata.Properties) 
+    {
+        if (prop.ShowForDisplay)
+        {
+            <th style="padding-right:10px">
+                @prop.GetDisplayName() 
+            </th>
+        }
+    }
+    </tr>
+}
+
+<tr>
+@foreach (var prop in ViewData.ModelMetadata.Properties) 
+{
+    if (prop.ShowForDisplay)
+    {
+        <td>
+            @Html.Display(prop.PropertyName)
+        </td>
+    }    
+}
+</tr>

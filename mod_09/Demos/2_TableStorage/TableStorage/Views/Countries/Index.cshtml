@@ -1,0 +1,22 @@
+﻿@model IEnumerable<TableStorage.Country>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<table>
+@{    
+    bool isFirst = true;
+
+    foreach (TableStorage.Country country in Model)
+    {
+        @Html.Partial("CountryDetail", country, new ViewDataDictionary { { "isFirst", isFirst } })
+        isFirst = false;
+    }
+}
+</table>
+
+<br /><br />
+@Html.Partial("AddCountry", new TableStorage.Country("",""))

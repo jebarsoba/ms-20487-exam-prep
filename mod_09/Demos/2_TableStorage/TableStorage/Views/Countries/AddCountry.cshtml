@@ -1,0 +1,27 @@
+﻿@model TableStorage.Country
+
+<script src="~/Scripts/jquery-1.7.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+@using (Html.BeginForm("Add", "Countries"))
+{
+    <fieldset>
+        <legend>Country</legend>
+    @foreach (var prop in ViewData.ModelMetadata.Properties) 
+    {
+        if (prop.ShowForDisplay)
+        {
+        <div class="editor-label">
+            @Html.Label(prop.PropertyName)
+        </div>
+        <div class="editor-field">
+            @Html.Editor(prop.PropertyName, null, prop.DisplayName)            
+        </div>        
+        }    
+    }
+          <p>
+            <input type="submit" value="Add" />
+        </p>
+    </fieldset>
+}
