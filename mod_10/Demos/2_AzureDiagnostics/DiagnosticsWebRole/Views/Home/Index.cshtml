@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>Console Writer:</h1>
+                <h2>Windows Azure Diagnostics</h2>
+            </hgroup>
+            <p>
+                Use this page to log data
+            </p>
+        </div>
+    </section>
+}
+
+<form action="home/write" method="get">
+    Log Text:
+    <input type="text" name="text" />
+    <input type="submit" value="Write to trace provider" />
+</form>

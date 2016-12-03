@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<MonitoringManagement xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0" namespace="WAD" timestamp="2016-12-03T23:09:45.8478164Z">
+  <Accounts>
+    <Account moniker="WadAccount" name="devstoreaccount1" key="Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==" />
+  </Accounts>
+  <Management secureTransport="false" deployToMds="false" disableNodeDiagnostics="true">
+    <Identity>
+      <IdentityComponent name="DeploymentId">GetEnvironmentVariable("MONITORING_DEPLOYMENT")</IdentityComponent>
+      <IdentityComponent name="Role">GetEnvironmentVariable("MONITORING_ROLE")</IdentityComponent>
+      <IdentityComponent name="RoleInstance">GetEnvironmentVariable("MONITORING_ROLE_INSTANCE")</IdentityComponent>
+    </Identity>
+    <AgentResourceUsage diskQuotaInMB="5012" />
+  </Management>
+  <Events>
+    <CounterSets>
+      <CounterSet storeType="Central" priority="Normal" retryTimeout="PT60M" duration="PT1M" diskQuotaInMB="644" dontUsePerNDayTable="true" dontUseNPartitionSpread="true" eventName="PerformanceCountersTable" sampleRateInSeconds="180">
+        <Counter>\Memory\Available MBytes</Counter>
+        <Counter>\Web Service(_Total)\ISAPI Extension Requests/sec</Counter>
+        <Counter>\Web Service(_Total)\Bytes Total/Sec</Counter>
+        <Counter>\ASP.NET Applications(__Total__)\Requests/Sec</Counter>
+        <Counter>\ASP.NET Applications(__Total__)\Errors Total/Sec</Counter>
+        <Counter>\ASP.NET\Requests Queued</Counter>
+        <Counter>\ASP.NET\Requests Rejected</Counter>
+        <Counter>\Processor(_Total)\% Processor Time</Counter>
+      </CounterSet>
+    </CounterSets>
+    <EtwProviders>
+      <EtwProvider duration="PT1M" dontUseNPartitionSpread="true" guid="9238252e-3e48-43ef-ac6c-d66f8210474e;15D2502E-8793-435d-B9FA-87E67A7BBA29" format="Xml" levelFilter="2">
+        <DefaultEvent storeType="Central" priority="Normal" retryTimeout="PT60M" diskQuotaInMB="50" dontUsePerNDayTable="true" dontUseNPartitionSpread="true" eventName="DiagnosticInfrastructureLogsTable" />
+      </EtwProvider>
+      <EtwProvider storeType="Central" priority="Normal" retryTimeout="PT60M" duration="PT1M" diskQuotaInMB="644" dontUsePerNDayTable="true" dontUseNPartitionSpread="true" guid="8D5CB585-360B-4442-8252-6C28A3DCA52E" format="Xml" levelFilter="5">
+        <DefaultEvent eventName="LogsTable" />
+      </EtwProvider>
+    </EtwProviders>
+    <FileMonitors storeType="Central" priority="Normal" retryTimeout="PT60M" duration="PT1M" diskQuotaInMB="50" dontUsePerNDayTable="true" dontUseNPartitionSpread="true" multiContainers="true">
+      <FileWatchItem dontUseNPartitionSpread="true" compressionType="none" eventName="DirectoriesTable" directoryQuotaInMB="644" lastChangeOffsetInSeconds="300" removeEmptyDirectories="false" container="wad-iis-logfiles">
+        <Directory>"C:\inetpub\logs\LogFiles"</Directory>
+      </FileWatchItem>
+      <FileWatchItem dontUseNPartitionSpread="true" compressionType="none" eventName="DirectoriesTable" directoryQuotaInMB="644" lastChangeOffsetInSeconds="300" removeEmptyDirectories="false" container="wad-iis-logfiles">
+        <Directory>"C:\Users\Jar jar\AppData\Local\dftmp\Resources\1935e168-2b03-4bd2-aef9-f2398cccd8e3\directory\DiagnosticStore\LogFiles\Web"</Directory>
+      </FileWatchItem>
+      <FileWatchItem dontUseNPartitionSpread="true" compressionType="none" eventName="DirectoriesTable" directoryQuotaInMB="644" lastChangeOffsetInSeconds="300" removeEmptyDirectories="false" container="wad-failedrequestlogs">
+        <Directory>"C:\inetpub\logs\FailedReqLogFiles"</Directory>
+      </FileWatchItem>
+      <FileWatchItem dontUseNPartitionSpread="true" compressionType="none" eventName="DirectoriesTable" directoryQuotaInMB="644" lastChangeOffsetInSeconds="300" removeEmptyDirectories="false" container="wad-failedrequestlogs">
+        <Directory>"C:\Users\Jar jar\AppData\Local\dftmp\Resources\1935e168-2b03-4bd2-aef9-f2398cccd8e3\directory\DiagnosticStore\FailedReqLogFiles\Web"</Directory>
+      </FileWatchItem>
+    </FileMonitors>
+    <WindowsEventLogSubscriptions storeType="Central" priority="Normal" retryTimeout="PT60M" duration="PT1M" diskQuotaInMB="644" dontUsePerNDayTable="true" dontUseNPartitionSpread="true">
+      <Subscription eventName="WindowsEventLogsTable" query="Application!*">
+        <Column name="ProviderGuid" type="mt:wstr" defaultAssignment="00000000-0000-0000-0000-000000000000">
+          <Value>/Event/System/Provider/@Guid</Value>
+        </Column>
+        <Column name="ProviderName" type="mt:wstr" defaultAssignment="">
+          <Value>/Event/System/Provider/@Name</Value>
+        </Column>
+        <Column name="EventId" type="mt:int32" defaultAssignment="0">
+          <Value>/Event/System/EventID</Value>
+        </Column>
+        <Column name="Level" type="mt:int32" defaultAssignment="0">
+          <Value>/Event/System/Level</Value>
+        </Column>
+        <Column name="Pid" type="mt:int32" defaultAssignment="0">
+          <Value>/Event/System/Execution/@ProcessID</Value>
+        </Column>
+        <Column name="Tid" type="mt:int32" defaultAssignment="0">
+          <Value>/Event/System/Execution/@ThreadID</Value>
+        </Column>
+        <Column name="Opcode" type="mt:int32" defaultAssignment="0">
+          <Value>/Event/System/Opcode</Value>
+        </Column>
+        <Column name="Task" type="mt:int32" defaultAssignment="0">
+          <Value>/Event/System/Task</Value>
+        </Column>
+        <Column name="Channel" type="mt:wstr" defaultAssignment="">
+          <Value>/Event/System/Channel</Value>
+        </Column>
+        <Column name="Description" type="mt:wstr" defaultAssignment="">
+          <Value>GetEventMetadata("Description")</Value>
+        </Column>
+        <Column name="RawXml" type="mt:wstr" defaultAssignment="">
+          <Value>/</Value>
+        </Column>
+      </Subscription>
+    </WindowsEventLogSubscriptions>
+    <DerivedEvents>
+      <DerivedEvent storeType="Local" retryTimeout="PT0M" duration="PT24H" eventName="MaQosEvent">
+        <Query>
+            let Level = 1 
+            where 
+            Level == 0
+            </Query>
+      </DerivedEvent>
+      <DerivedEvent storeType="Local" retryTimeout="PT0M" duration="PT24H" eventName="MaCounterEvent">
+        <Query>
+            let Level = 1 
+            where 
+            Level == 0
+            </Query>
+      </DerivedEvent>
+      <DerivedEvent storeType="Local" retryTimeout="PT0M" duration="PT24H" eventName="MAEventTable">
+        <Query>
+          let Level = 5
+          let Pid = 0
+          let Tid = 0
+          let Stream = ""
+          let ActivityId = 0
+          let File=""
+          let Function = ""
+          let Line = 0
+          let MDRESULT = 0
+          let ErrorCode = 0
+          let ErrorCodeMsg = ""
+          let Message = ""
+          </Query>
+      </DerivedEvent>
+      <DerivedEvent storeType="Central" priority="Normal" retryTimeout="PT60M" duration="PT1M" dontUsePerNDayTable="true" dontUseNPartitionSpread="true" eventName="DiagnosticInfrastructureLogsTable" source="MAEventTable">
+        <Query>where Level &lt;= 2 let ProviderGuid="", EventId=64000 select DeploymentId, Role, RoleInstance, Level, ProviderGuid, EventId, Pid, Tid, ActivityId, Function, Line, MDRESULT, ErrorCode, ErrorCodeMsg, Message</Query>
+      </DerivedEvent>
+    </DerivedEvents>
+  </Events>
+</MonitoringManagement>
