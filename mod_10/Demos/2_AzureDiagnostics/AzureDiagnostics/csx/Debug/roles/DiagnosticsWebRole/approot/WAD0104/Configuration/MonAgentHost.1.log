@@ -18,3 +18,4 @@ Error (2016-12-03T23:14:58Z): MAEventTable: Level:2 MDRESULT:0xc0000bb9 ErrorCod
 Error (2016-12-03T23:14:58Z): MAEventTable: Level:2 MDRESULT:0xc0000bb9 ErrorCode(0): Message:PdhExpandWildCardPath(\ASP.NET\Requests Rejected) failed
 Error (2016-12-03T23:14:58Z): MAEventTable: Level:2 MDRESULT:0xc0000bb8 ErrorCode(0): Message:PdhExpandWildCardPath(\Processor(_Total)\% Processor Time) failed
 Error (2016-12-03T23:14:58Z): MAEventTable: Level:2 MDRESULT:0x800007d5 ErrorCode(0): Message:PdhCollectQueryData failed
+Info  (2016-12-03T23:20:15Z): Restarting the stopped monitoring agent host 1616.
