@@ -1,0 +1,63 @@
+﻿
+<header>
+    <div class="content-wrapper">
+        <div class="float-left">
+            <p class="site-title">
+                <a href="~/">ASP.NET Web API</a>
+            </p>
+        </div>
+    </div>
+</header>
+<div id="body">
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>Welcome to ASP.NET Web API!</h1><br />
+                <h2>Please enter a number between 0 and 9 and then click one of the buttons:</h2>
+            </hgroup>
+            <p>
+                <input type="text" id="txt" /><br />                
+                <input type="button" id="btnGetDefault" value="Get default" />
+                <input type="button" id="btnGetJson" value="Get JSON" />
+                <input type="button" id="btnGetXml" value="Get XML" />
+                <input type="button" id="btnGetImage" value="Get image" />
+            </p>            
+        </div>
+    </section>
+</div>
+
+@section Scripts {
+<script type="text/javascript">
+    $(function () {
+        $('#btnGetDefault').click(function () {
+            getValue();
+        });
+
+        $('#btnGetJson').click(function () {
+            getValue("json");
+        });
+
+        $('#btnGetXml').click(function () {
+            getValue("xml");
+        });
+
+        $('#btnGetImage').click(function () {
+            getValue("image");
+        });
+    });
+
+    function getValue(dataType) {
+        var value = $("#txt").val();
+        $.ajax({
+            url: "api/values/" + value,
+            type: "GET",
+            dataType: dataType,
+            accepts: {
+                json: "application/json",
+                xml: "application/xml",
+                image: "image/png"
+            }            
+        });
+    };
+</script>
+}
