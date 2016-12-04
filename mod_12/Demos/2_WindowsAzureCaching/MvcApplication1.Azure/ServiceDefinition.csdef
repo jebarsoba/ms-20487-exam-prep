@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<ServiceDefinition name="MvcApplication1.Azure" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition" schemaVersion="2015-04.2.6">
+    <WebRole name="MvcApplication1" vmsize="Small">
+        <Sites>
+            <Site name="Web">
+                <Bindings>
+                    <Binding name="Endpoint1" endpointName="Endpoint1" />
+                </Bindings>
+            </Site>
+        </Sites>
+        <Endpoints>
+            <InputEndpoint name="Endpoint1" protocol="http" port="80" />
+        </Endpoints>
+        <Imports>
+        </Imports>
+        <ConfigurationSettings>
+            <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" />
+            <Setting name="Microsoft.WindowsAzure.Plugins.Caching.ClientDiagnosticLevel" />
+        </ConfigurationSettings>
+        <LocalResources>
+            <LocalStorage name="DiagnosticStore" sizeInMB="20000" cleanOnRoleRecycle="false" />
+        </LocalResources>
+        <Startup priority="-2">
+            <Task commandLine="Microsoft.WindowsAzure.Caching\ClientPerfCountersInstaller.exe install" executionContext="elevated" taskType="simple" />
+        </Startup>
+    </WebRole>
+    <WorkerRole name="CacheWorkerRole" vmsize="Small">
+        <ConfigurationSettings>
+            <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" />
+        </ConfigurationSettings>
+        <Imports>
+            <Import moduleName="Caching" />
+        </Imports>
+        <LocalResources>
+            <LocalStorage name="DiagnosticStore" sizeInMB="20000" cleanOnRoleRecycle="false" />
+        </LocalResources>
+    </WorkerRole>
+</ServiceDefinition>
