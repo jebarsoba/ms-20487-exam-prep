@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RoleModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="WebApplication" version="2.6.6496.2" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition">
+  <Runtime>
+    <EntryPoint>
+      <NetFxEntryPoint assemblyName="WebApplication.dll" targetFrameworkVersion="v4.0" />
+    </EntryPoint>
+  </Runtime>
+  <Properties>
+    <Property name="TargetFrameworkVersion" value="v4.5" />
+    <Property name="RoleType" value="Web" />
+    <Property name="RoleName" value="WebApplication" />
+    <Property name="ProjectName" value="WebApplication" />
+    <Property name="Configuration" value="Release" />
+    <Property name="Platform" value="AnyCPU" />
+    <Property name="SetConfiguration" value="Configuration=Release" />
+    <Property name="SetPlatform" value="Platform=AnyCPU" />
+    <Property name="RoleTargetFramework" value="v4.5" />
+    <Property name="OutputDir" value="C:\dev\ms-20487-exam-prep\mod_12\Demos\1_ScalingWebApplications\WebApplication.Azure\obj\Release\WebApplication\" />
+    <Property name="EntryPoint" value="WebApplication.dll" />
+    <Property name="SourceDir" value="C:\dev\ms-20487-exam-prep\mod_12\Demos\1_ScalingWebApplications\WebApplication\" />
+    <Property name="SitePhysicalPath" value="C:\dev\ms-20487-exam-prep\mod_12\Demos\1_ScalingWebApplications\WebApplication.Azure\obj\Release\WebApplication\" />
+    <Property name="TargetRuntimeVersion" value="v4.0" />
+  </Properties>
+  <Sites>
+    <Site name="Web" physicalDirectory="C:\dev\ms-20487-exam-prep\mod_12\Demos\1_ScalingWebApplications\WebApplication.Azure\obj\Release\WebApplication\">
+      <Bindings>
+        <Binding name="Endpoint1" endpointName="Endpoint1" />
+      </Bindings>
+    </Site>
+  </Sites>
+</RoleModel>
