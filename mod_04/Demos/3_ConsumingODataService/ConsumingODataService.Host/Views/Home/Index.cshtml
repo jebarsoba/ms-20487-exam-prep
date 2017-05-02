@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "Home";
+}
+
+<script>
+    $(function () {
+        $('#go').click(function () {
+            $.ajax({
+                type: "GET",
+                url: "http://localhost:57371/api/customers?" + $('#filter').attr('value'),
+                dataType: "json",
+                success: function (data) {
+                    var result = $('#result');
+                    result.html('');
+                    $(data).each(function (index, item) {
+                        result.html(result.html() + '<br />' + item.FirstName + '<br />' + item.LastName + '<br /><br />');
+                    });
+                }
+            });
+        });
+    });
+</script>
+<h2>Home</h2>
+Place filter here:
+<br />
+<input id="filter" type="text" style="width: 500px;" />
+<input type="button" id="go" value="GO" />
+<br />
+<br />
+Filtered Data:
+
+<div id="result"></div>
